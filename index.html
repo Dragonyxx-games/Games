@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Game Codes</title>
+<style>
+body{font-family:Arial,sans-serif;margin:0;background:#f4f7fb;color:#172033}.wrap{max-width:900px;margin:auto;padding:24px}.hero{background:#172033;color:white;border-radius:18px;padding:28px;margin-bottom:20px}.hero h1{margin:0 0 8px;font-size:38px}.hero p{margin:0;color:#dbe5ff}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}.card{background:white;border:1px solid #dce3ee;border-radius:16px;padding:18px}.card h2{margin:0 0 8px}.price{font-weight:bold;margin:12px 0}.button{display:inline-block;border:0;border-radius:10px;padding:10px 14px;background:#315efb;color:white;text-decoration:none;cursor:pointer}.section{background:white;border:1px solid #dce3ee;border-radius:16px;padding:20px;margin-top:20px}.row{display:grid;gap:10px;margin:10px 0}input,textarea,select{font:inherit;padding:10px;border:1px solid #c9d3e2;border-radius:9px}.small{font-size:13px;color:#657086}.success{display:none;background:#e8f7ed;border:1px solid #b9e1c5;padding:12px;border-radius:10px;margin-top:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="hero">
+    <h1>🎮 Game Codes</h1>
+    <p>Choose a game code or send a custom game request.</p>
+  </div>
+
+  <div class="grid">
+    <div class="card"><h2>Stompshot</h2><p>Fast, fun action.</p><div class="price">In stock</div><button class="button" onclick="pick('Stompshot')">Request code</button></div>
+    <div class="card"><h2>Cabinet Row</h2><p>Arcade-style adventure.</p><div class="price">In stock</div><button class="button" onclick="pick('Cabinet Row')">Request code</button></div>
+    <div class="card"><h2>Deepglow Brawl</h2><p>Bright battles and big fun.</p><div class="price">In stock</div><button class="button" onclick="pick('Deepglow Brawl')">Request code</button></div>
+  </div>
+
+  <div class="section" id="request">
+    <h2>Request a game</h2>
+    <p class="small">This simple version opens your email app to send the request. It does not store passwords or payment information.</p>
+    <form onsubmit="sendRequest(event)">
+      <div class="row"><label>Game <select id="game"><option>Stompshot</option><option>Cabinet Row</option><option>Deepglow Brawl</option><option>Custom game request</option></select></label></div>
+      <div class="row"><label>What do you want? <textarea id="details" rows="3" placeholder="For example: 1 code for Stompshot"></textarea></label></div>
+      <button class="button" type="submit">Send request</button>
+    </form>
+    <div class="success" id="success">Your email app should open with the request ready to send.</div>
+  </div>
+
+  <div class="section">
+    <h2>About</h2>
+    <p>Thanks for checking out Game Codes! Requests are reviewed before anything is provided.</p>
+  </div>
+</div>
+<script>
+function pick(name){document.getElementById('game').value=name;document.getElementById('request').scrollIntoView({behavior:'smooth'});}
+function sendRequest(e){e.preventDefault();const game=document.getElementById('game').value;const details=document.getElementById('details').value;const subject=encodeURIComponent('Game Code Request - '+game);const body=encodeURIComponent('Game: '+game+'\nRequest: '+details);window.location.href='mailto:ama30@fessenden.org?subject='+subject+'&body='+body;document.getElementById('success').style.display='block';}
+</script>
+</body>
+</html>
